@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #0f0f0f, #000000);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 30px rgba(236, 72, 153, 0.2);
+      backdrop-filter: blur(16px);
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.25rem;
+    }
+
+    p.description {
+      font-size: 14px;
+      color: #c4b5fd;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    form label {
+      font-size: 14px;
+      color: #e9d5ff;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group svg {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      stroke: #c084fc;
+    }
+
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 12px 12px 12px 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 14px;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #ec4899, #8b5cf6);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+    }
+
+    .btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+    }
+
+    .footer-text {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 13px;
+      color: #d8b4fe;
+    }
+
+    .footer-text a {
+      color: #ec4899;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #c4b5fd;
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .back-link svg {
+      stroke: #c084fc;
+      width: 16px;
+      height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <a href="/" class="back-link">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to Home
+    </a>
+
+    <h1>Create Account</h1>
+    <p class="description">Join Femigo and be part of our community.</p>
+
+    <form>
+      <label for="name">Name</label>
+      <div class="input-group">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A8.966 8.966 0 0112 15c2.136 0 4.09.747 5.598 1.996M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <input type="text" id="name" placeholder="Your Name" required />
+      </div>
+
+      <label for="country">Country</label>
+      <div class="input-group">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 000 20 10 10 0 000-20zm0 18v-2m0-4v-4m0-4V4" />
+        </svg>
+        <select id="country" required>
+          <option value="">Select your country</option>
+          <option value="IN">India</option>
+          <option value="US">United States</option>
+          <option value="UK">United Kingdom</option>
+          <option value="CA">Canada</option>
+          <option value="AU">Australia</option>
+          <!-- Add more countries as needed -->
+        </select>
+      </div>
+
+      <button type="submit" class="btn">Create Account</button>
+    </form>
+
+    <p class="footer-text">
+      Already have an account? <a href="/login">Log in</a>
+    </p>
+  </div>
+</body>
+</html>
