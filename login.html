@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0c18;
+      color: white;
+      height: 100%;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(18px);
+      border-radius: 16px;
+      padding: 1.8rem;
+      width: 100%;
+      max-width: 340px;
+      box-shadow: 0 0 16px rgba(255, 0, 255, 0.1);
+      position: relative;
+    }
+
+    .back-small {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: #c084fc;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+
+    .back-small .icon {
+      font-size: 18px;
+      line-height: 1;
+      color: #c084fc;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p.subtext {
+      text-align: center;
+      color: #d1c4ff;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    label {
+      font-size: 13px;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      padding: 10px 12px 10px 38px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #111;
+      color: white;
+      font-size: 13.5px;
+    }
+
+    .input-wrapper .icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: #a78bfa;
+    }
+
+    .btn {
+      width: 100%;
+      background: linear-gradient(to right, #ec4899, #8b5cf6);
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      margin-top: 0.7rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px rgba(236, 72, 153, 0.4);
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 1.3rem;
+      font-size: 13px;
+      color: #ccc;
+    }
+
+    .footer-text a {
+      color: #f472b6;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+
+      <!-- Smaller Back to Home inside the box -->
+      <a href="/" class="back-small">
+        <span class="icon">&lt;</span>
+        <span>Back to Home</span>
+      </a>
+
+      <h1>Log In</h1>
+      <p class="subtext">Welcome back! Please enter your details.</p>
+
+      <form>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <div class="input-wrapper">
+            <span class="icon">↵</span>
+            <input type="email" id="email" placeholder="your.email@example.com" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <span class="icon">🛡️</span>
+            <input type="password" id="password" placeholder="Your Password" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn">Log In</button>
+      </form>
+
+      <div class="footer-text">
+        Don't have an account? <a href="/signup">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
