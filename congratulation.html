@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Congratulations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom, #111827, #000);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .blur-circle {
+      position: absolute;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 9999px;
+      filter: blur(80px);
+      z-index: 0;
+    }
+    .top-left {
+      top: -5rem; left: -5rem;
+      background: rgba(236, 72, 153, 0.3);
+    }
+    .bottom-right {
+      bottom: -5rem; right: -5rem;
+      background: rgba(244, 63, 94, 0.3);
+    }
+    .container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .card {
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255,0,128,0.15);
+      animation: zoomIn 0.6s ease-out;
+      position: relative;
+    }
+    @keyframes zoomIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .icon-box {
+      margin: 0 auto 1rem;
+      height: 4rem; width: 4rem;
+      background: linear-gradient(to bottom right, #ec4899, #f43f5e);
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 4px 20px rgba(255,0,128,0.2);
+      position: relative;
+    }
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #ec4899, #f43f5e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #a1a1aa;
+      margin-bottom: 1.5rem;
+    }
+    .verified-list {
+      background: rgba(255,255,255,0.05);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .verified-step {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      animation: slideIn 0.6s forwards;
+    }
+    .verified-step svg {
+      flex-shrink: 0;
+      color: #4ade80;
+    }
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    .button {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      border: none;
+      border-radius: 0.75rem;
+      background: linear-gradient(to right, #ec4899, #ff55a5);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255,85,165,0.3);
+    }
+    .footer-note {
+      font-size: 0.9rem;
+      color: #a1a1aa;
+      margin-bottom: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="blur-circle top-left"></div>
+<div class="blur-circle bottom-right"></div>
+
+<div class="container">
+  <div class="card">
+    <div class="icon-box" id="iconBox">🎉</div>
+    <h1 class="title">Congratulations!</h1>
+    <p class="subtitle">You've successfully completed the verification process. Welcome to the Femigo community!</p>
+
+    <div class="verified-list" id="stepsList"></div>
+
+    <p class="footer-note">Now let's fill some basic details to let the others know about you, pal.</p>
+    <button class="button" onclick="window.location.href='/onboarding/details'">Let's Go!</button>
+  </div>
+</div>
+
+<!-- Confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  // Add steps
+  const steps = [
+    "Account Created",
+    "Face Verified",
+    "Aadhaar Verified",
+    "Phone Verified",
+    "Email Verified"
+  ];
+  const stepsList = document.getElementById("stepsList");
+  steps.forEach((step, i) => {
+    const div = document.createElement("div");
+    div.className = "verified-step";
+    div.style.animationDelay = `${i * 150}ms`;
+    div.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17l-3.88-3.88L4 13.41 9 18.41l12-12-1.41-1.41z"/></svg> <span>${step}</span>`;
+    stepsList.appendChild(div);
+  });
+
+  // Sprinkle burst from iconBox
+  window.addEventListener("load", () => {
+    const icon = document.getElementById("iconBox");
+    const rect = icon.getBoundingClientRect();
+
+    // Get center of the icon box in page coordinates
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+    // Trigger confetti burst
+    confetti({
+      particleCount: 150,
+      spread: 90,
+      origin: { x, y },
+      startVelocity: 35,
+      colors: ['#EC008C', '#FF55A5', '#ffffff']
+    });
+
+    // Optionally add another burst after delay
+    setTimeout(() => {
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { x, y: y + 0.05 },
+        startVelocity: 25,
+        colors: ['#ffffff', '#FF55A5']
+      });
+    }, 500);
+  });
+</script>
+</body>
+</html>
