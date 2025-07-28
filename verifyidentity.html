@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Photo & Gender Check</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script defer>
+    let videoStream;
+    function startCamera() {
+      const video = document.getElementById("video");
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+        .then(stream => {
+          videoStream = stream;
+          video.srcObject = stream;
+        })
+        .catch(() => alert("Camera access denied. Please enable camera permissions."));
+    }
+
+    function capturePhoto() {
+      const video = document.getElementById("video");
+      const canvas = document.getElementById("canvas");
+      const context = canvas.getContext("2d");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.translate(video.videoWidth, 0);
+      context.scale(-1, 1);
+      context.drawImage(video, 0, 0);
+      const imgData = canvas.toDataURL("image/jpeg");
+      document.getElementById("capturedImage").src = imgData;
+      document.getElementById("captureArea").classList.add("hidden");
+      document.getElementById("previewArea").classList.remove("hidden");
+    }
+
+    function retakePhoto() {
+      document.getElementById("captureArea").classList.remove("hidden");
+      document.getElementById("previewArea").classList.add("hidden");
+    }
+
+    window.onload = () => startCamera();
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex items-center justify-center p-4">
+  <div class="w-full max-w-lg">
+    <a href="#" class="mb-4 flex items-center text-sm text-gray-400 hover:text-white">
+      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      Back to Account Details
+    </a>
+    <div class="bg-white/10 backdrop-blur p-6 rounded-2xl shadow-xl">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold mb-2">Step 2: Live Photo & Gender Check</h1>
+        <p class="text-sm text-gray-300">Please take a clear, live photo. We'll verify you're female to ensure our community is safe and authentic.</p>
+        <p class="text-sm text-pink-400 font-semibold mt-2">Please remove glasses for the photo.</p>
+      </div>
+
+      <div id="captureArea" class="mt-6">
+        <div class="relative aspect-video bg-black overflow-hidden rounded-lg">
+          <video id="video" autoplay muted playsinline class="w-full h-full object-cover transform -scale-x-100"></video>
+        </div>
+        <button onclick="capturePhoto()" class="mt-4 w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h4l2-3h6l2 3h4v13H3V7z" /></svg>
+          Capture Photo
+        </button>
+      </div>
+
+      <div id="previewArea" class="hidden mt-6">
+        <img id="capturedImage" alt="Captured photo" class="w-full rounded-lg" />
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          <button onclick="retakePhoto()" class="border border-white py-2 rounded-lg hover:bg-white hover:text-black">Retake</button>
+          <button onclick="alert('Submitting for gender check...')" class="bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold py-2 rounded-lg hover:shadow-lg hover:scale-105 transition-all">Verify & Continue</button>
+        </div>
+      </div>
+      <canvas id="canvas" class="hidden"></canvas>
+    </div>
+  </div>
+</body>
+</html>
