@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diary Entry</title>
+  <style>
+    :root {
+      --bg: #111;
+      --card: #1c1c1c;
+      --border: #2a2a2a;
+      --text: #fff;
+      --muted: #aaa;
+      --accent: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+    }
+
+    .wrapper {
+      max-width: 720px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .badge {
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 20px;
+    }
+
+    .date {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .content-box {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .text-layer {
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .photos img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .caption {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    .voice-note {
+      font-size: 14px;
+      color: var(--muted);
+      background: var(--accent);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    @media screen and (max-width: 480px) {
+      .header h1 {
+        font-size: 18px;
+      }
+
+      .section-title {
+        font-size: 15px;
+      }
+
+      .text-layer {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <div class="header">
+        <h1>Diary Entry</h1>
+        <div class="badge">😊</div>
+      </div>
+
+      <div class="date">
+        <svg width="16" height="16" fill="currentColor"><circle cx="8" cy="8" r="8" fill="#aaa"/></svg>
+        Tuesday, July 9, 2025 at 10:00 AM
+      </div>
+
+      <div
+        class="content-box"
+        style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=800&q=80');"
+      >
+        <div class="text-layer">
+          <p>Today was calm and peaceful. I went to the lake and watched the sunset. Everything felt right. 🌅</p>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <svg width="16" height="16" fill="currentColor"><rect width="16" height="16" fill="#aaa"/></svg>
+        Photos
+      </div>
+      <div class="photos">
+        <div>
+          <img src="https://via.placeholder.com/150" alt="Photo 1">
+          <div class="caption">"Lake view"</div>
+        </div>
+        <div>
+          <img src="https://via.placeholder.com/150" alt="Photo 2">
+          <div class="caption">"Evening sky"</div>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <svg width="16" height="16" fill="currentColor"><circle cx="8" cy="8" r="8" fill="#aaa"/></svg>
+        Voice Note
+      </div>
+      <div class="voice-note">
+        🎙 Voice note would be playable here (audio player placeholder).
+      </div>
+    </div>
+  </div>
+</body>
+</html>
