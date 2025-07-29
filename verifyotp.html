@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OTP Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #1a1a1a, #000);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+    }
+    .otp-popup {
+      position: absolute;
+      top: 40px;
+      background: white;
+      color: black;
+      padding: 12px 24px;
+      font-size: 22px;
+      font-weight: bold;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 1000;
+    }
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+      position: relative;
+    }
+    .card {
+      background-color: #0c0b14;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.2);
+    }
+    .card h2 {
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .description {
+      text-align: center;
+      font-size: 14px;
+      color: #bbb;
+      margin-bottom: 1.5rem;
+    }
+    .form-label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .otp-box {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .otp-box input {
+      width: 40px;
+      height: 48px;
+      font-size: 24px;
+      text-align: center;
+      border: 1px solid #333;
+      background-color: #1f1f2a;
+      color: #fff;
+      border-radius: 10px;
+    }
+    .otp-box input:focus {
+      outline: 2px solid #ec008c;
+    }
+    .submit-btn {
+      width: 100%;
+      background-color: #ec008c;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.3s;
+    }
+    .submit-btn:hover {
+      background-color: #d4007a;
+      transform: scale(1.02);
+    }
+    .resend {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .resend button {
+      background: none;
+      border: none;
+      color: #ec008c;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- OTP Popup Floating Above -->
+  <div id="otpPopup" class="otp-popup"></div>
+
+  <div class="container">
+    <div class="card">
+      <h2>Step 4: OTP Verification</h2>
+      <p class="description">
+        A 6-digit code has been sent to your device.<br>
+        Check the notification and enter the code below.
+      </p>
+
+      <form onsubmit="verifyOTP(event)">
+        <label class="form-label">Verification Code</label>
+        <div class="otp-box">
+          <input type="text" maxlength="1" />
+          <input type="text" maxlength="1" />
+          <input type="text" maxlength="1" />
+          <input type="text" maxlength="1" />
+          <input type="text" maxlength="1" />
+          <input type="text" maxlength="1" />
+        </div>
+        <button type="submit" class="submit-btn">Verify & Continue</button>
+      </form>
+
+      <p class="resend">
+        Didn't receive the code?
+        <button onclick="resendOTP()">Resend OTP</button>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    let generatedOTP = "";
+
+    function generateOTP() {
+      generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+      const popup = document.getElementById("otpPopup");
+      popup.textContent = generatedOTP;
+      popup.style.display = "block";
+
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 4000);
+    }
+
+    function verifyOTP(event) {
+      event.preventDefault();
+      const inputs = document.querySelectorAll(".otp-box input");
+      const entered = [...inputs].map(i => i.value).join("");
+      if (entered === generatedOTP) {
+        alert("✅ Phone Verified!");
+        window.location.href = "/verify-email.html";
+      } else {
+        alert("❌ Invalid OTP. Please try again.");
+      }
+    }
+
+    function resendOTP() {
+      generateOTP();
+    }
+
+    // Generate OTP on page load
+    window.onload = generateOTP;
+  </script>
+</body>
+</html>
